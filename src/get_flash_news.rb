@@ -14,6 +14,7 @@ class GetFlashNews
     end
 
     @doc = Nokogiri::HTML.parse(html, nil, @charset)
+    p 'parsed.'
   end
 
   def get_flash_urls(limit = 20)
@@ -26,5 +27,6 @@ class GetFlashNews
     File.open("#{File.expand_path(File.dirname(__FILE__)).sub(/src/, 'result')}/#{result_file_name}", 'w') do |result_file|
       get_flash_urls(limit).each { |url| result_file.puts(url) }
     end
+    p "wrote: #{result_file_name}"
   end
 end
